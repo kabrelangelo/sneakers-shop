@@ -1,10 +1,9 @@
 import { useState, useContext, useEffect } from "react"
 import axios from 'axios';
 import Navbar from "./components/Navbar"
-import Home from "./pages/Home"
 import {Routes, Route} from 'react-router-dom'
 import ProductDetails from "./pages/ProductDetails"
-
+import Home from "./pages/home/Home";
 
 function App() {
   
