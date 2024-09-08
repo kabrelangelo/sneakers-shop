@@ -1,6 +1,6 @@
 import GalleryHome from "./components/GalleryHome";
 import LandingPage from "./components/LandingPage";
-import News from "./components/News";
+import NewSneakers from "./components/NewSneakers";
 
 
 const Home = ({products}) => {
@@ -8,7 +8,7 @@ const Home = ({products}) => {
    <div>
       <LandingPage/>
       <GalleryHome/>
-      <News/>
+      <NewSneakers/>
     </div>
   );
 };
