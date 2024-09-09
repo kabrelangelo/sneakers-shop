@@ -1,13 +1,22 @@
-import React from 'react';
-import {  useParams } from 'react-router-dom';
+import React, { useState } from 'react';
+import {  useNavigate, useParams } from 'react-router-dom';
 import { newsProducts } from '../data/Products';
 
 const ProductDetails = () => {
+  const [quantity, setQuantity]=useState(1)
     const {slug} = useParams();
+    const navigate=useNavigate()
     const product= newsProducts.find(p=>p.slug===slug)
-    const changeImage=(src)=>{
-        document.getElementById("mainImage").src=src
+    const incrementQuantity=()=>{
+      setQuantity(prev=>prev+1)
     }
+    const decrementQuantity=()=>{
+      setQuantity(prev=>prev-1)
+      if(quantity<=1){
+        setQuantity(1)
+      }
+    }
+
     return (
         <div>
             <div className="bg-gray-100">
@@ -16,7 +25,7 @@ const ProductDetails = () => {
    
       <div className="w-full md:w-1/2 px-4 mb-8">
         <img src={product.image} alt="Product"
-                    className="w-full h-auto rounded-lg shadow-md mb-4" id="mainImage"/>
+          className="w-full h-auto rounded-lg shadow-md mb-4" id="mainImage"/>
        {/*  <div className="flex gap-4 py-4 justify-center overflow-x-auto">
           <img src="https://images.unsplash.com/photo-1505751171710-1f6d0ace5a85?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NzEyNjZ8MHwxfHNlYXJjaHwxMnx8aGVhZHBob25lfGVufDB8MHx8fDE3MjEzMDM2OTB8MA&ixlib=rb-4.0.3&q=80&w=1080" alt="Thumbnail 1"
                         className="size-16 sm:size-20 object-cover rounded-md cursor-pointer opacity-60 hover:opacity-100 transition duration-300"
@@ -35,8 +44,7 @@ const ProductDetails = () => {
 
       <div className="w-full md:w-1/2 px-4">
         <h2 className="text-3xl font-bold mb-2">{product.name}</h2>
-        <p className="text-gray-600 mb-4">SKU: WH1000XM4</p>
-        <div className="mb-4">
+        <div className="my-5">
           <span className="text-2xl font-bold mr-2"> {product.price} </span>
           {/* <span className="text-gray-500 line-through">$399.99</span> */}
         </div>
@@ -88,14 +96,25 @@ const ProductDetails = () => {
         </div>
 
         <div className="mb-6">
-          <label htmlFor="quantity" className="block text-sm font-medium text-gray-700 mb-1">Quantity:</label>
-          <input type="number" id="quantity" name="quantity" min="1" 
-                        className="w-12 text-center rounded-md border-gray-900  shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"/>
+          <label htmlFor="quantity" className="block text-sm font-medium text-gray-700 mb-1">
+          Quantity:</label>
+          <button className='border border-solid shadow-md bg-gray-200 text-2xl px-2'
+          onClick={decrementQuantity}> - </button>
+          <input type="text" id="quantity" name="" value={quantity}
+                        className="w-12 text-center rounded-md border-gray-900  
+                        shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 
+                        focus:ring-opacity-50"/>
+          <button className='border border-solid shadow-md bg-gray-200 text-2xl px-2' 
+          onClick={incrementQuantity }> + </button>
+          
         </div>
 
         <div className="flex space-x-4 mb-6">
           <button
-                        className="bg-indigo-600 flex gap-2 items-center text-white px-6 py-2 rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
+          onClick={()=>navigate("/product/cart")}
+                        className="bg-indigo-600 flex gap-2 items-center text-white px-6 py-2 
+                        rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2
+                         focus:ring-indigo-500 focus:ring-offset-2">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                             strokeWidth="1.5" stroke="currentColor" className="size-6">
                             <path strokeLinecap="round" strokeLinejoin="round"
