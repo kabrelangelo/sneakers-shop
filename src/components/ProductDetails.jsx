@@ -1,12 +1,22 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import {  useNavigate, useParams } from 'react-router-dom';
 import { newsProducts } from '../data/Products';
+import { CartContext } from '../context/CartContext';
 
 const ProductDetails = () => {
   const [quantity, setQuantity]=useState(1)
     const {slug} = useParams();
     const navigate=useNavigate()
+    const {addCart}=useContext(CartContext);
+
+
+    const handleClick=()=>{
+      addCart(product);
+      navigate("/product/cart")
+    }
     const product= newsProducts.find(p=>p.slug===slug)
+
+    
     const incrementQuantity=()=>{
       setQuantity(prev=>prev+1)
     }
@@ -86,12 +96,9 @@ const ProductDetails = () => {
         <div className="mb-6">
           <h3 className="text-lg font-semibold mb-2">Color:</h3>
           <div className="flex space-x-2">
-            <button
-                            className="w-8 h-8 bg-black rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-black"></button>
-            <button
-                            className="w-8 h-8 bg-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-300"></button>
-            <button
-                            className="w-8 h-8 bg-blue-500 rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"></button>
+            <button className="w-8 h-8 bg-black rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-black"></button>
+            <button className="w-8 h-8 bg-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-300"></button>
+            <button className="w-8 h-8 bg-blue-500 rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"></button>
           </div>
         </div>
 
@@ -111,7 +118,7 @@ const ProductDetails = () => {
 
         <div className="flex space-x-4 mb-6">
           <button
-          onClick={()=>navigate("/product/cart")}
+          onClick={handleClick}
                         className="bg-indigo-600 flex gap-2 items-center text-white px-6 py-2 
                         rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2
                          focus:ring-indigo-500 focus:ring-offset-2">
