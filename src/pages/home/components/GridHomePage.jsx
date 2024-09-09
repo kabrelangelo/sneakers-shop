@@ -13,9 +13,9 @@ const GridHomePage = () => {
       <div className=" break-inside-avoid  mb-8">
       <img className="h-auto max-w-full rounded-lg" src="images/grid/grid3.jpg" alt="Gallery image" />
       </div>
-      <div className=" break-inside-avoid  mb-8">
+     {/*  <div className=" break-inside-avoid  mb-8">
       <img className="h-auto max-w-full rounded-lg" src="images/grid/grid5.webp" alt="Gallery image" />
-      </div>
+      </div> */}
       <div className=" break-inside-avoid  mb-8">
       <img className="h-auto max-w-full rounded-lg" src="images/grid/grid4.webp" alt="Gallery image" />
       </div>

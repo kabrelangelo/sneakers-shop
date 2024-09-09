@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 const GalleryHome = () => {
     return (
         <div>
-            <div className="bg-white dark:bg-gray-800 py-6 sm:py-8 lg:py-12">
+            <div className="bg-white dark:bg-gray-800 py-6 sm:py-8 lg:py-12 my-5">
     <div className="mx-auto max-w-screen-2xl px-4 md:px-8">
         <div className="grid grid-cols-1 gap-6 lg:grid-cols-2 md:grid-cols-2 md:gap-4 xl:gap-6">
   
