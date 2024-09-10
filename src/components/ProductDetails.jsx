@@ -8,15 +8,13 @@ const ProductDetails = () => {
     const {slug} = useParams();
     const navigate=useNavigate()
     const {addCart}=useContext(CartContext);
-
-
-    const handleClick=()=>{
-      addCart(product);
-      navigate("/product/cart")
-    }
     const product= newsProducts.find(p=>p.slug===slug)
 
-    
+    const handleAddToCart=()=>{
+      addCart({product, quantity});
+      navigate("/product/cart")
+    }
+
     const incrementQuantity=()=>{
       setQuantity(prev=>prev+1)
     }
@@ -26,6 +24,7 @@ const ProductDetails = () => {
         setQuantity(1)
       }
     }
+
 
     return (
         <div>
@@ -107,7 +106,7 @@ const ProductDetails = () => {
           Quantity:</label>
           <button className='border border-solid shadow-md bg-gray-200 text-2xl px-2'
           onClick={decrementQuantity}> - </button>
-          <input type="text" id="quantity" name="" value={quantity}
+          <input type="text" id="quantity" name="" value={quantity} onChange={(e)=> setQuantity(e.target.value)}
                         className="w-12 text-center rounded-md border-gray-900  
                         shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 
                         focus:ring-opacity-50"/>
@@ -118,7 +117,7 @@ const ProductDetails = () => {
 
         <div className="flex space-x-4 mb-6">
           <button
-          onClick={handleClick}
+          onClick={handleAddToCart}
                         className="bg-indigo-600 flex gap-2 items-center text-white px-6 py-2 
                         rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2
                          focus:ring-indigo-500 focus:ring-offset-2">

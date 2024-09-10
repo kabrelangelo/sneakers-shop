@@ -3,7 +3,9 @@ import {Link} from 'react-router-dom'
 import { CartContext } from '../context/CartContext';
 
 const ShoppingCart = () => {
-    const {cart, deleteCart}=useContext(CartContext)    
+    const {cart, deleteCart}=useContext(CartContext)
+    
+        
     return (
         <div>
             <div className="container mx-auto mt-10">
@@ -17,13 +19,13 @@ const ShoppingCart = () => {
         <div key={item.id}>
         <div className="md:flex items-strech py-8 md:py-10 lg:py-8 border-t border-gray-50">
         <div className="md:w-4/12 2xl:w-1/4 w-full">
-          <img src={item.image} alt="Black Leather Purse" className="h-full object-center object-cover md:block hidden" />
+          <img src={item.product.image} alt="Black Leather Purse" className="h-full object-center object-cover md:block hidden" />
         </div>
         <div className="md:pl-3 md:w-8/12 2xl:w-3/4 flex flex-col justify-center">
           <div className="flex items-center justify-between w-full">
-            <p className="text-base font-black leading-none text-gray-800">{item.name}</p>
+            <p className="text-base font-black leading-none text-gray-800">{item.product.name}</p>
            <div>
-  <label htmlFor="Quantity" className="sr-only"> Quantity </label>
+  <label htmlFor="Quantity" className="sr-only"> Quantity : </label>
 
   <div className="flex items-center gap-1">
     <button type="button" className="size-10 leading-10 text-gray-600 transition hover:opacity-75">
@@ -33,7 +35,7 @@ const ShoppingCart = () => {
     <input
       type="number"
       id="Quantity"
-     
+      value={item.quantity }
       className="h-10 w-16 rounded border-gray-200 text-center [-moz-appearance:_textfield] sm:text-sm [&::-webkit-inner-spin-button]:m-0 [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:m-0 [&::-webkit-outer-spin-button]:appearance-none"
     />
 
@@ -51,7 +53,7 @@ const ShoppingCart = () => {
               onClick={()=>deleteCart(item.id)}>
               Remove</p>
             </div>
-            <p className="text-base font-black leading-none text-gray-800">{item.price}</p>
+            <p className="text-base font-black leading-none text-gray-800">{`${item.quantity}*${item.product.price}`}</p>
           </div>
         </div>
         </div>
