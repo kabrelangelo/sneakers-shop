@@ -16,7 +16,7 @@ const ShoppingCart = () => {
         <h2 className="font-semibold text-2xl">{cart.length} Articles</h2>
       </div>  
       {cart.map((item)=>(
-        <div key={item.id}>
+        <div key={item.product.id}>
         <div className="md:flex items-strech py-8 md:py-10 lg:py-8 border-t border-gray-50">
         <div className="md:w-4/12 2xl:w-1/4 w-full">
           <img src={item.product.image} alt="Black Leather Purse" className="h-full object-center object-cover md:block hidden" />
