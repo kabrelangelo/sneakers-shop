@@ -4,7 +4,7 @@ import { CartContext } from '../context/CartContext';
 
 const ShoppingCart = () => {
     const {cart, deleteCart}=useContext(CartContext)
-    
+
         
     return (
         <div>
@@ -50,7 +50,7 @@ const ShoppingCart = () => {
           <div className="flex items-center justify-between pt-5">
             <div className="flex itemms-center">
               <p className="text-xs leading-3 underline text-red-500 pl-5 cursor-pointer"
-              onClick={()=>deleteCart(item.id)}>
+              onClick={()=>deleteCart(item.product.id)}>
               Remove</p>
             </div>
             <p className="text-base font-black leading-none text-gray-800">{`${item.quantity}*${item.product.price}`}</p>

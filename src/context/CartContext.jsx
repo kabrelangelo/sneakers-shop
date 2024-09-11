@@ -30,7 +30,7 @@ export default function CartContextProvider({children}){
         });
       };
     const deleteCart=(productId)=>{
-        setCart(cart.filter(product=>product.id!==productId));
+        setCart(cart.filter(c=>c.product.id!==productId));
     }
     return (
         <CartContext.Provider value={{cart, addCart, deleteCart}} >
