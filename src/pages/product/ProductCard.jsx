@@ -1,21 +1,14 @@
 import React, { useContext } from 'react';
+import { CartContext } from '../../context/CartContext';
+import { newsProducts } from '../../data/Products';
 import { Link } from 'react-router-dom';
-import { newsProducts } from '../data/Products';
-import { CartContext } from '../context/CartContext';
 
-const Card = () => {
-  const {addCart}=useContext(CartContext);
 
-  const truncate=(text, n)=>{
-    if(text.length>=n){
-      return text.substring(0,n)+" ..."
-    }
-    return text;
-  }
-
+const ProductCard = () => {
+    const {addCart}=useContext(CartContext)
     return (
-   
-        <div className='grid grid-cols-1 md:grid-cols-3 gap-4 lg:grid-cols-4'>
+        <div>
+           <div className='grid grid-cols-1 md:grid-cols-3 gap-4 lg:grid-cols-4'>
            {
        newsProducts.map((item)=>(
         <div key={item.id} className="group mx-5 flex w-full flex-col rounded-lg border
@@ -23,16 +16,10 @@ const Card = () => {
   <Link to={`/product/${item.slug}`} className="relative  mt-3 flex h-64 overflow-hidden rounded-xl">
     <img className="peer absolute top-0 right-0 h-full w-full object-cover" 
     src={item.image} alt={item.name} />
-    {/* <img className="peer absolute top-0 -right-96 h-full w-full object-cover transition-all delay-100 duration-1000 hover:right-0 peer-hover:right-0" src="https://images.unsplash.com/photo-1600185365483-26d7a4cc7519?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8OHx8c25lYWtlcnxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60" alt="product image" /> */}
-    {/* <div className="absolute  bottom-0 mb-4 flex space-x-4 w-full justify-center">
-      <div className="rounded-full h-3 w-3 bg-gray-200 border-2 border-white"></div> 
-      <div className="rounded-full h-3 w-3 bg-gray-200 border-2 border-white"></div>
-      <div className="rounded-full h-3 w-3 bg-gray-200 border-2 border-white"></div>
-    </div>  */}
   </Link>
   <div className="mt-4 px-5 pb-5">
     <Link to={`/product/${item.slug}`}>
-      <h5 className="text-xl tracking-tight text-slate-900">{truncate(item.name, 25)}</h5>
+      <h5 className="text-xl tracking-tight text-slate-900">{item.name}</h5>
     </Link>
     <div className="mt-2 mb-5 flex items-center justify-between">
       <p>
@@ -51,8 +38,9 @@ const Card = () => {
        ))
       }
       
-</div>
+</div> 
+        </div>
     );
 };
 
-export default Card;
+export default ProductCard;

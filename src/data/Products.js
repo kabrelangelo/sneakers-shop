@@ -35,3 +35,7 @@ export const newsProducts=[
         description:"Les Adidas Superstar en bleu avec des accents blancs sont un classique indémodable qui allie confort et style. Fabriquées en suède doux, elles présentent une tige bleue vibrante et les trois bandes blanches emblématiques sur les côtés. La coque en caoutchouc à l'avant protège les orteils tout en ajoutant une touche unique au design. La semelle en caoutchouc assure une excellente adhérence, ce qui les rend parfaites pour une utilisation quotidienne. Ces sneakers sont idéales pour compléter un look décontracté ou pour ajouter une note sportive à une tenue plus habillée."
         },
     ]
+
+    export const products=[
+        {id:1, image:"", name:"", price:"", description:""},
+    ]
