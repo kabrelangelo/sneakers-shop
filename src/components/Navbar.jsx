@@ -18,8 +18,8 @@ const Navbar = () => {
                     <div className="flex justify-between items-center">
                         {/* Menu navigation - visible sur grands écrans */}
                         <nav className="font-sen text-gray-800 dark:text-white uppercase text-lg lg:flex items-center hidden">
-                        <NavLink to="/" className={({ isActive }) => isActive  ? "py-2 px-6 flex text-gray-900 shadow-lg" 
-        : "py-2 px-6 flex text-gray-500 dark:text-white hover:bg-blue-100 dark:hover:bg-gray-500 hover:text-gray-700"
+                        <NavLink to="/" className={({ isActive }) => isActive  ? "py-2 px-6 flex text-gray-900 shadow-sm" 
+        : "py-2 px-6 flex text-gray-500 dark:text-white  dark:hover:bg-gray-500 hover:text-gray-700"
     }
 >
     Home
@@ -30,14 +30,14 @@ const Navbar = () => {
 >
     Watch
 </NavLink> */}
-<NavLink to="/product" className={({ isActive }) => isActive  ? "py-2 px-6 flex text-gray-900 rounded-lg shadow-lg" 
-        : "py-2 px-6 flex text-gray-500 dark:text-white hover:bg-blue-100 dark:hover:bg-gray-700 hover:text-gray-700"
+<NavLink to="/product" className={({ isActive }) => isActive  ? "py-2 px-6 flex text-gray-900 rounded-lg shadow-sm" 
+        : "py-2 px-6 flex text-gray-500 dark:text-white  dark:hover:bg-gray-700 hover:text-gray-700"
     }
 >
     Product
 </NavLink>
-<NavLink to="/contact" className={({ isActive }) => isActive  ? "py-2 px-6 flex text-gray-900 rounded-lg shadow-lg" 
-        : "py-2 px-6 flex text-gray-500 dark:text-white hover:bg-blue-100 dark:hover:bg-gray-700 hover:text-gray-700"
+<NavLink to="/contact" className={({ isActive }) => isActive  ? "py-2 px-6 flex text-gray-900 rounded-lg shadow-sm" 
+        : "py-2 px-6 flex text-gray-500 dark:text-white  dark:hover:bg-gray-700 hover:text-gray-700"
     }
 >
     Contact
@@ -45,23 +45,23 @@ const Navbar = () => {
                         </nav>
                         {/* Menu Hamburger - visible sur petits écrans */}
                         <button className="lg:hidden flex flex-col ml-4" onClick={toggleMenu}>
-                            <span className="w-6 h-1 bg-gray-800 dark:bg-white mb-1"></span>
-                            <span className="w-6 h-1 bg-gray-800 dark:bg-white mb-1"></span>
-                            <span className="w-6 h-1 bg-gray-800 dark:bg-white mb-1"></span>
+                            <span className="w-6 h-1 bg-gray-900 dark:bg-white mb-1"></span>
+                            <span className="w-6 h-1 bg-gray-900 dark:bg-white mb-1"></span>
+                            <span className="w-6 h-1 bg-gray-900 dark:bg-white mb-1"></span>
                         </button>
                     </div>
                 </div>
 
                 {/* Menu mobile */}
                 <div
-                    className={`absolute top-0 left-0 w-full h-full bg-white dark:bg-gray-800 transform ${
+                    className={`absolute top-0 left-0 w-full h-full bg-white dark:bg-gray-900 transform ${
                         isMenuOpen ? "translate-x-0" : "-translate-x-full"
                     } transition-transform duration-300 ease-in-out lg:hidden z-20`}
                 >
                     <div className="flex flex-col items-center justify-center h-full relative">
                         {/* Bouton de fermeture */}
                         <button
-                            className="absolute top-6 right-6 text-gray-800 dark:text-white"
+                            className="absolute top-6 right-6 text-gray-900 dark:text-white"
                             onClick={toggleMenu}
                         >
                             <svg
@@ -80,21 +80,21 @@ const Navbar = () => {
                             </svg>
                         </button>
 
-                        <NavLink to="/" className="py-2 px-6 text-xl">
+                        <NavLink to="/" className="py-2 px-6 text-black text-2xl">
                             Home
                         </NavLink>
-                        <NavLink to="/watch" className="py-2 px-6 text-xl">
+                       {/*  <NavLink to="/watch" className="py-2 px-6 text-xl">
                             Watch
-                        </NavLink>
-                        <NavLink to="products" className="py-2 px-6 text-xl">
+                        </NavLink> */}
+                        <NavLink to="product" className="py-2 px-6 text-2xl">
                             Product
                         </NavLink>
-                        <NavLink to="/contact" className="py-2 px-6 text-xl">
+                        <NavLink to="/contact" className="py-2 px-6 text-2xl">
                             Contact
                         </NavLink>
-                        <NavLink to="/career" className="py-2 px-6 text-xl">
+                       {/*  <NavLink to="/career" className="py-2 px-6 text-xl">
                             Career
-                        </NavLink>
+                        </NavLink> */}
                     </div>
                 </div>
             </header>

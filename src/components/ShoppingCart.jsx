@@ -53,7 +53,7 @@ const ShoppingCart = () => {
               onClick={()=>deleteCart(item.product.id)}>
               Remove</p>
             </div>
-            <p className="text-base font-black leading-none text-gray-800">{`${item.quantity}*${item.product.price}`}</p>
+            <p className="text-base font-black leading-none text-gray-800">{`${item.quantity}*${item.product.price} FCFA`}</p>
           </div>
         </div>
         </div>

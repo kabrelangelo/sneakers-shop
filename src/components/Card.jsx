@@ -21,7 +21,7 @@ const Card = () => {
         <div key={item.id} className="group mx-5 flex w-full flex-col rounded-lg border
          border-gray-100 hover:scale-110 transition-transform duration-300 bg-white shadow-md">
   <Link to={`/product/${item.slug}`} className="relative  mt-3 flex h-64 overflow-hidden rounded-xl">
-    <img className="peer absolute top-0 right-0 h-full w-full object-cover" 
+    <img className="peer absolute top-0 right-0 h-full w-full object-contain" 
     src={item.image} alt={item.name} />
     {/* <img className="peer absolute top-0 -right-96 h-full w-full object-cover transition-all delay-100 duration-1000 hover:right-0 peer-hover:right-0" src="https://images.unsplash.com/photo-1600185365483-26d7a4cc7519?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8OHx8c25lYWtlcnxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60" alt="product image" /> */}
     {/* <div className="absolute  bottom-0 mb-4 flex space-x-4 w-full justify-center">
@@ -36,7 +36,7 @@ const Card = () => {
     </Link>
     <div className="mt-2 mb-5 flex items-center justify-between">
       <p>
-        <span className="text-xl font-bold text-slate-900">{item.price}</span>
+        <span className="text-xl font-bold text-slate-900">{item.price} FCFA</span>
         {/* <span className="text-sm text-slate-900 line-through">$699</span> */}
       </p>
     </div>

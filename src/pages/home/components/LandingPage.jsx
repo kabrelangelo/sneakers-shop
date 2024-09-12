@@ -3,10 +3,10 @@ import { Link } from 'react-router-dom';
 
 const LandingPage = () => {
     return (
-        <div className="dark:bg-gray-800 bg-white relative overflow-hidden lg:h-screen">
-            <div className="bg-white dark:bg-gray-800 flex relative z-20 items-center overflow-hidden">
+        <div className="dark:bg-gray-800 bg-white relative  lg:h-screen">
+            <div className="bg-white dark:bg-gray-800 flex relative z-20 items-center ">
                 <div className="container mx-auto px-6 flex flex-col-reverse lg:flex-row items-center py-16">
-                    
+                   
                     {/* Texte principal */}
                     <div className="sm:w-full lg:w-2/5 flex flex-col relative z-20 text-center lg:text-left">
                         <span className="w-20 h-2 bg-gray-800 dark:bg-white mb-12 mx-auto lg:mx-0"></span>
@@ -34,10 +34,10 @@ const LandingPage = () => {
                     <div className="sm:w-full lg:w-3/5 mb-8 lg:mb-0">
                         <img src="/landing.webp" className="w-full max-w-md h-auto object-cover m-auto" alt="Landing visual" />
                     </div>
-                    
+                   
                 </div>
-            </div>
-        </div>
+             </div> 
+        </div> 
     );
 };
 
