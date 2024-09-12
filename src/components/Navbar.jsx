@@ -18,26 +18,26 @@ const Navbar = () => {
                     <div className="flex justify-between items-center">
                         {/* Menu navigation - visible sur grands écrans */}
                         <nav className="font-sen text-gray-800 dark:text-white uppercase text-lg lg:flex items-center hidden">
-                        <NavLink to="/" className={({ isActive }) => isActive  ? "py-2 px-6 flex text-white bg-pink-400 rounded-lg shadow-lg" 
-        : "py-2 px-6 flex text-gray-800 dark:text-white hover:bg-blue-100 dark:hover:bg-gray-700 hover:text-pink-600"
+                        <NavLink to="/" className={({ isActive }) => isActive  ? "py-2 px-6 flex text-gray-900 shadow-lg" 
+        : "py-2 px-6 flex text-gray-500 dark:text-white hover:bg-blue-100 dark:hover:bg-gray-500 hover:text-gray-700"
     }
 >
     Home
 </NavLink>
-                        <NavLink to="/watch" className={({ isActive }) => isActive  ? "py-2 px-6 flex text-white bg-pink-400 rounded-lg shadow-lg" 
+         {/*                <NavLink to="/watch" className={({ isActive }) => isActive  ? "py-2 px-6 flex text-white bg-pink-400 rounded-lg shadow-lg" 
         : "py-2 px-6 flex text-gray-800 dark:text-white hover:bg-blue-100 dark:hover:bg-gray-700 hover:text-pink-600"
     }
 >
     Watch
-</NavLink>
-<NavLink to="/product" className={({ isActive }) => isActive  ? "py-2 px-6 flex text-white bg-pink-400 rounded-lg shadow-lg" 
-        : "py-2 px-6 flex text-gray-800 dark:text-white hover:bg-blue-100 dark:hover:bg-gray-700 hover:text-pink-600"
+</NavLink> */}
+<NavLink to="/product" className={({ isActive }) => isActive  ? "py-2 px-6 flex text-gray-900 rounded-lg shadow-lg" 
+        : "py-2 px-6 flex text-gray-500 dark:text-white hover:bg-blue-100 dark:hover:bg-gray-700 hover:text-gray-700"
     }
 >
     Product
 </NavLink>
-<NavLink to="/contact" className={({ isActive }) => isActive  ? "py-2 px-6 flex text-white bg-pink-400 rounded-lg shadow-lg" 
-        : "py-2 px-6 flex text-gray-800 dark:text-white hover:bg-blue-100 dark:hover:bg-gray-700 hover:text-pink-600"
+<NavLink to="/contact" className={({ isActive }) => isActive  ? "py-2 px-6 flex text-gray-900 rounded-lg shadow-lg" 
+        : "py-2 px-6 flex text-gray-500 dark:text-white hover:bg-blue-100 dark:hover:bg-gray-700 hover:text-gray-700"
     }
 >
     Contact

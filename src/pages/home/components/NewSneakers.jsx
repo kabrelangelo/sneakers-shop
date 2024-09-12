@@ -9,7 +9,7 @@ const NewSneakers = () => {
         <div className="bg-white">
         <div className="flex justify-between mx-10 my-10">
           <h5 className="uppercase">Nouveautés</h5>
-          <Link to="">
+          <Link to="/product">
           <h5 className="uppercase font-bold hover:text-gray-500">Tout afficher</h5>
           </Link>
         </div>
