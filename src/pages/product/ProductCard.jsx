@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { CartContext } from '../../context/CartContext';
-import { newsProducts } from '../../data/Products';
+import { products } from '../../data/Products';
 import { Link } from 'react-router-dom';
 
 
@@ -8,13 +8,13 @@ const ProductCard = () => {
     const {addCart}=useContext(CartContext)
     return (
         <div>
-           <div className='grid grid-cols-1 md:grid-cols-3 gap-4 lg:grid-cols-4'>
+           <div className='grid grid-cols-1 md:grid-cols-3 gap-4 lg:grid-cols-3'>
            {
-       newsProducts.map((item)=>(
+       products.map((item)=>(
         <div key={item.id} className="group mx-5 flex w-full flex-col rounded-lg border
          border-gray-100 hover:scale-110 transition-transform duration-300 bg-white shadow-md">
-  <Link to={`/product/${item.slug}`} className="relative  mt-3 flex h-64 overflow-hidden rounded-xl">
-    <img className="peer absolute top-0 right-0 h-full w-full object-cover" 
+  <Link to={`/product/${item.slug}`} className="relative  mt-3 mx-2 flex h-64 overflow-hidden rounded-xl">
+    <img className="peer top-0 right-0 w-full object-contain" 
     src={item.image} alt={item.name} />
   </Link>
   <div className="mt-4 px-5 pb-5">
