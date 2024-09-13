@@ -13,7 +13,7 @@ const ShoppingCart = () => {
     <div className="  w-full  sm:w-3/4 bg-white px-10 py-10">
       <div className="flex justify-between border-b pb-8">
         <h1 className="font-semibold text-2xl">Shopping Cart</h1>
-        <h2 className="font-semibold text-2xl">{cart.length} Articles</h2>
+       {/*  <h2 className="font-semibold text-2xl">{cart.length} Articles</h2> */}
       </div>  
       {cart.map((item)=>(
         <div key={item.product.id}>
