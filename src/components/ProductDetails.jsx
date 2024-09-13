@@ -12,7 +12,7 @@ const ProductDetails = () => {
 
     const handleAddToCart=()=>{
       addCart({product, quantity});
-      navigate("/product/cart")
+      navigate("/cart")
     }
 
     const incrementQuantity=()=>{

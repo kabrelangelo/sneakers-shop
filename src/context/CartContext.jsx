@@ -32,8 +32,11 @@ export default function CartContextProvider({children}){
     const deleteCart=(productId)=>{
         setCart(cart.filter(c=>c.product.id!==productId));
     }
+
+
+    const totalItems = cart.reduce((acc, item) => acc + item.quantity, 0);
     return (
-        <CartContext.Provider value={{cart, addCart, deleteCart}} >
+        <CartContext.Provider value={{cart, addCart, deleteCart, totalItems}} >
             {children}
         </CartContext.Provider>
     )

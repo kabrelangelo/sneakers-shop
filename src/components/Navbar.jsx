@@ -1,12 +1,15 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { NavLink } from "react-router-dom";
+import { CartContext } from "../context/CartContext";
 
 const Navbar = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const {totalItems}=useContext(CartContext)
 
     const toggleMenu = () => {
         setIsMenuOpen(!isMenuOpen);
     };
+console.log(totalItems);
 
     return (
         <div>
@@ -42,7 +45,17 @@ const Navbar = () => {
 >
     Contact
 </NavLink>
-                        </nav>
+<NavLink to="/cart" className="relative inline-block">
+  <span className="text-xl">🛒</span>
+  
+  {totalItems > 0 && (
+    <span className="absolute -top-2 -right-2 flex items-center justify-center w-5 h-5 bg-red-600 text-white text-xs font-bold rounded-full">
+      {totalItems}
+    </span>
+  )}
+</NavLink>
+
+        </nav>
                         {/* Menu Hamburger - visible sur petits écrans */}
                         <button className="lg:hidden flex flex-col ml-4" onClick={toggleMenu}>
                             <span className="w-6 h-1 bg-gray-900 dark:bg-white mb-1"></span>
