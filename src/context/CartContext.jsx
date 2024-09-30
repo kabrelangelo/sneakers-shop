@@ -20,7 +20,7 @@ export default function CartContextProvider({children}){
             // Si le produit existe déjà, on met à jour la quantité
             return prevCart.map(p =>
               p.product.id === product.id
-                ? { ...p, quantity: p.quantity + quantity } // On additionne les quantités
+                ? { ...p, quantity: p.quantity + quantity } 
                 : p
             );
           } else {

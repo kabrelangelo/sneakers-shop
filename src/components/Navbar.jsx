@@ -9,7 +9,6 @@ const Navbar = () => {
     const toggleMenu = () => {
         setIsMenuOpen(!isMenuOpen);
     };
-console.log(totalItems);
 
     return (
         <div>

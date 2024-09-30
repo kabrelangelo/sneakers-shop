@@ -18,6 +18,7 @@ const ProductDetails = () => {
     const incrementQuantity=()=>{
       setQuantity(prev=>prev+1)
     }
+    
     const decrementQuantity=()=>{
       setQuantity(prev=>prev-1)
       if(quantity<=1){
