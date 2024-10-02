@@ -32,10 +32,22 @@ export default function CartContextProvider({children}){
         setCart(cart.filter(c=>c.product.id!==productId));
     }
 
+      const updateQuantity=(productId, newQuantity)=>{
+        setCart(prevCart=>prevCart.map(item=>{
+          if(item.product.id===productId){
+           return item={...item, quantity:newQuantity};
+          }else{
+           return item;
+          }
+        }  )
+
+        )
+      }
+       
 
     const totalItems = cart.reduce((acc, item) => acc + item.quantity, 0);
     return (
-        <CartContext.Provider value={{cart, addCart, deleteCart, totalItems}} >
+        <CartContext.Provider value={{cart, addCart, updateQuantity,deleteCart, totalItems}} >
             {children}
         </CartContext.Provider>
     )
