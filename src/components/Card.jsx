@@ -1,11 +1,11 @@
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
-import { newsProducts } from '../data/Products';
+import { products } from '../data/Products';
 import { CartContext } from '../context/CartContext';
 
 const Card = () => {
   const {addCart}=useContext(CartContext);
-
+  const newProducts=products.filter(product=>product.tag==="new")
   const truncate=(text, n)=>{
     if(text.length>=n){
       return text.substring(0,n)+" ..."
@@ -17,7 +17,7 @@ const Card = () => {
    
         <div className='grid grid-cols-1 md:grid-cols-3 gap-4 lg:grid-cols-4'>
            {
-       newsProducts.map((item)=>(
+       newProducts.map((item)=>(
         <div key={item.id} className="group mx-5 flex w-full flex-col rounded-lg border
          border-gray-100 hover:scale-110 transition-transform duration-300 bg-white shadow-md">
   <Link to={`/product/${item.slug}`} className="relative  mt-3 flex h-64 overflow-hidden rounded-xl">

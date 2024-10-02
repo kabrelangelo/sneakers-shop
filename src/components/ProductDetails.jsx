@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react';
 import {  useNavigate, useParams } from 'react-router-dom';
-import { newsProducts } from '../data/Products';
+import { products } from '../data/Products';
 import { CartContext } from '../context/CartContext';
 
 const ProductDetails = () => {
@@ -8,7 +8,7 @@ const ProductDetails = () => {
     const {slug} = useParams();
     const navigate=useNavigate()
     const {addCart}=useContext(CartContext);
-    const product= newsProducts.find(p=>p.slug===slug)
+    const product= products.find(p=>p.slug===slug)
 
     const handleAddToCart=()=>{
       addCart(product, quantity);
