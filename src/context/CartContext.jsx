@@ -11,7 +11,6 @@ export default function CartContextProvider({children}){
         localStorage.setItem('shoppingCart', JSON.stringify(cart));
       }, [cart]);
 
-
       const addCart = (product, quantity = 1) => {
         setCart((prevCart) => {
           const existingProduct = prevCart.find(p => p.product.id === product.id);

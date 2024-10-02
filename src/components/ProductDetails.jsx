@@ -11,7 +11,7 @@ const ProductDetails = () => {
     const product= newsProducts.find(p=>p.slug===slug)
 
     const handleAddToCart=()=>{
-      addCart({product, quantity});
+      addCart(product, quantity);
       navigate("/cart");
     }
 
@@ -107,7 +107,7 @@ const ProductDetails = () => {
           Quantity:</label>
           <button className='border border-solid shadow-md bg-gray-200 text-2xl px-2'
           onClick={decrementQuantity}> - </button>
-          <input type="text" id="quantity" name="" value={quantity} onChange={(e)=> setQuantity(e.target.value)}
+          <input type="text" id="quantity" name="" value={quantity} onChange={()=> setQuantity(e.target.value)}
                         className="w-12 text-center rounded-md border-gray-900  
                         shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 
                         focus:ring-opacity-50"/>
