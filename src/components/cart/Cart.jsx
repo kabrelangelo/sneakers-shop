@@ -3,14 +3,11 @@ import "./cart.css";
 import { IoCloseSharp } from "react-icons/io5";
 import Button from "../button/Button";
 import CartItem from "./CartItem";
-import { BASE_URL } from "../../hooks/config";
-import axios from "axios";
-import { UserContext } from "../../hooks/context/UserContext";
-import BlurEffect from "../BlurEffect";
+
 
 
 const Cart = ({ setShowCart, showCart, cartUpdated, setCartUpdated }) => {
-  const [userId, setUserId] = useState();
+ /*  const [userId, setUserId] = useState();
   const [items, setItems] = useState([]);
   const { userInfo } = useContext(UserContext);
 
@@ -18,19 +15,19 @@ const Cart = ({ setShowCart, showCart, cartUpdated, setCartUpdated }) => {
     if (userInfo?.id) {
       setUserId(userInfo.id);
     }
-  }, [userInfo]);
+  }, [userInfo]); */
 
   // Fetch the cart data for the user
-  const handleGetUser = async () => {
-    if (userId) {
-      try {
-        const response = await axios.get(`${BASE_URL}/users/getUser/${userId}`);
-        setItems(response.data?.cart || []);
-      } catch (error) {
-        console.log("Error fetching user data:", error);
-      }
-    }
-  };
+  // const handleGetUser = async () => {
+  //   if (userId) {
+  //     try {
+  //       const response = await axios.get(`${BASE_URL}/users/getUser/${userId}`);
+  //       setItems(response.data?.cart || []);
+  //     } catch (error) {
+  //       console.log("Error fetching user data:", error);
+  //     }
+  //   }
+  // };
 
   // Handle cart update when cartUpdated changes
   useEffect(() => {

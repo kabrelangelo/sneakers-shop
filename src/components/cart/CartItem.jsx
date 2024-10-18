@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import './CartItem.css';
-import axios from "axios";
-import { BASE_URL } from "../../hooks/config";
+
 import { MdOutlineDeleteOutline } from "react-icons/md";
 
 const CartItem = ({ item, userId, onRemove }) => {
@@ -15,20 +14,7 @@ const CartItem = ({ item, userId, onRemove }) => {
   }, [item]);
 
   // Fetch product details
-  const handleGetUser = async () => {
-    try {
-      const response = await axios.get(`${BASE_URL}/articles/getArticle/${itemId}`);
-      setProduct(response?.data);
-    } catch (error) {
-      console.log("Error fetching product data:", error);
-    }
-  };
 
-  useEffect(() => {
-    if (itemId) {
-      handleGetUser();
-    }
-  }, [itemId]);
 
   // Update total price when quantity changes
   useEffect(() => {
@@ -38,17 +24,17 @@ const CartItem = ({ item, userId, onRemove }) => {
   }, [quantity, product]);
 
   // Remove item from cart
-  const handleRemoveItem = async () => {
-    if (userId && itemId) {
-      try {
-        const response = await axios.delete(`${BASE_URL}/users/removeItem/${userId}/${itemId}`);
-        console.log("Item removed from cart successfully", response);
-        onRemove(itemId);
-      } catch (error) {
-        console.log("Error removing item from cart:", error);
-      }
-    }
-  };
+  // const handleRemoveItem = async () => {
+  //   if (userId && itemId) {
+  //     try {
+  //       const response = await axios.delete(`${BASE_URL}/users/removeItem/${userId}/${itemId}`);
+  //       console.log("Item removed from cart successfully", response);
+  //       onRemove(itemId);
+  //     } catch (error) {
+  //       console.log("Error removing item from cart:", error);
+  //     }
+  //   }
+  // };
 
   const handleReduceQuantity = () => {
     let newQuantity = quantity - 1;
