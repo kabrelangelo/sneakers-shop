@@ -54,5 +54,7 @@ const Card = () => {
 </div>
     );
 };
+// Je suis vraiment très enthousiaste à l'idéé de vous revoir pour la recherche des choses qui nous 
+//affectent et je suis très fier de revoir la nuit dorée. d'accord à vous.
 
 export default Card;

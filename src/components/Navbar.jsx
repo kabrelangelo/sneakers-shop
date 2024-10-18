@@ -1,117 +1,254 @@
-import { useContext, useState } from "react";
-import { NavLink } from "react-router-dom";
-import { CartContext } from "../context/CartContext";
+import React, { useContext, useEffect, useState } from "react";
+import {
+  FaBars,
+  FaFacebookF,
+  FaTimes,
+  FaWhatsapp,
+  FaUserAlt,
+} from "react-icons/fa";
+import { Link, NavLink } from "react-router-dom";
+import images from "../../constants/images";
+import "./navbar.css";
+import { UserContext } from "../../hooks/context/UserContext";
+import Badge from "@mui/material/Badge";
+import { styled } from "@mui/material/styles";
+import IconButton from "@mui/material/IconButton";
+import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
+// import { BASE_URL } from "../../hooks/config";
+import CartItem from "../cart/CartItem";
+import Cart from "../cart/Cart";
+// import BlurEffect from "../BlurEffect";
 
-const Navbar = () => {
-    const [isMenuOpen, setIsMenuOpen] = useState(false);
-    const {totalItems}=useContext(CartContext)
+const StyledBadge = styled(Badge)(({ theme }) => ({
+  "& .MuiBadge-badge": {
+    right: -3,
+    top: 13,
+    border: `2px solid ${theme.palette.background.paper}`,
+    padding: "0 4px",
+    backgroundColor: "var(--color-red)",
+    color: "white",
+  },
+}));
 
-    const toggleMenu = () => {
-        setIsMenuOpen(!isMenuOpen);
+const StyledIconButton = styled(IconButton)(({ theme }) => ({
+  padding: "10px",
+  borderRadius: "50%",
+}));
+
+const Navbar = ({ colorLink, colorIcon, colorBorder, cartColor }) => {
+  const [toggleMenu, setToggleMenu] = useState(false);
+  const [showCart, setShowCart] = useState(false);
+  const [showBlur, setShowBlur] = useState(false);
+  const [badgeNumber, setBadgeNumber] = useState(0);
+  const [userId, setUserId] = useState();
+  const [items, setItems] = useState([]);
+  const [cartUpdated, setCartUpdated] = useState(false);
+
+  const [isWidthLessThan1000, setIsWidthLessThan1000] = useState(false);
+
+  const { handleLogout, userInfo, userToken } = useContext(UserContext);
+
+  // Check window width on resize
+  useEffect(() => {
+    const handleResize = () => {
+      const { body } = document;
+      setIsWidthLessThan1000(body.clientWidth < 1051);
     };
+    handleResize();
+    window.addEventListener("resize", handleResize);
 
-    return (
-        <div>
-            <header className="h-24 sm:h-32 flex items-center z-30 w-full">
-                <div className="container mx-auto px-6 flex items-center justify-between">
-                    <div className="uppercase text-gray-800 dark:text-white font-black text-3xl">
-                        <img src="/logo.png" alt="logo" className="h-24 sm:h-32 md:h-40 lg:h-48 w-auto " />
-                    </div>
-                    <div className="flex justify-between items-center">
-                        {/* Menu navigation - visible sur grands écrans */}
-                        <nav className="font-sen text-gray-800 dark:text-white uppercase text-lg lg:flex items-center hidden">
-                        <NavLink to="/" className={({ isActive }) => isActive  ? "py-2 px-6 flex text-gray-900 shadow-sm" 
-        : "py-2 px-6 flex text-gray-500 dark:text-white  dark:hover:bg-gray-500 hover:text-gray-700"
-    }
->
-    Home
-</NavLink>
-         {/*                <NavLink to="/watch" className={({ isActive }) => isActive  ? "py-2 px-6 flex text-white bg-pink-400 rounded-lg shadow-lg" 
-        : "py-2 px-6 flex text-gray-800 dark:text-white hover:bg-blue-100 dark:hover:bg-gray-700 hover:text-pink-600"
-    }
->
-    Watch
-</NavLink> */}
-<NavLink to="/product" className={({ isActive }) => isActive  ? "py-2 px-6 flex text-gray-900 rounded-lg shadow-sm" 
-        : "py-2 px-6 flex text-gray-500 dark:text-white  dark:hover:bg-gray-700 hover:text-gray-700"
-    }
->
-    Product
-</NavLink>
-<NavLink to="/contact" className={({ isActive }) => isActive  ? "py-2 px-6 flex text-gray-900 rounded-lg shadow-sm" 
-        : "py-2 px-6 flex text-gray-500 dark:text-white  dark:hover:bg-gray-700 hover:text-gray-700"
-    }
->
-    Contact
-</NavLink>
-<NavLink to="/cart" className="relative inline-block">
-  <span className="text-xl">🛒</span>
-  
-  {totalItems > 0 && (
-    <span className="absolute -top-2 -right-2 flex items-center justify-center w-5 h-5 bg-red-600 text-white text-xs font-bold rounded-full">
-      {totalItems}
-    </span>
-  )}
-</NavLink>
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
 
-        </nav>
-                        {/* Menu Hamburger - visible sur petits écrans */}
-                        <button className="lg:hidden flex flex-col ml-4" onClick={toggleMenu}>
-                            <span className="w-6 h-1 bg-gray-900 dark:bg-white mb-1"></span>
-                            <span className="w-6 h-1 bg-gray-900 dark:bg-white mb-1"></span>
-                            <span className="w-6 h-1 bg-gray-900 dark:bg-white mb-1"></span>
-                        </button>
-                    </div>
-                </div>
+  useEffect(() => {
+    setUserId(userInfo?.id);
+  }, [userInfo]);
 
-                {/* Menu mobile */}
-                <div
-                    className={`absolute top-0 left-0 w-full h-full bg-white dark:bg-gray-900 transform ${
-                        isMenuOpen ? "translate-x-0" : "-translate-x-full"
-                    } transition-transform duration-300 ease-in-out lg:hidden z-20`}
-                >
-                    <div className="flex flex-col items-center justify-center h-full relative">
-                        {/* Bouton de fermeture */}
-                        <button
-                            className="absolute top-6 right-6 text-gray-900 dark:text-white"
-                            onClick={toggleMenu}
-                        >
-                            <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                className="h-8 w-8"
-                                fill="none"
-                                viewBox="0 0 24 24"
-                                stroke="currentColor"
-                            >
-                                <path
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                    strokeWidth="2"
-                                    d="M6 18L18 6M6 6l12 12"
-                                />
-                            </svg>
-                        </button>
+  // Fetch user data and update cart badge
 
-                        <NavLink to="/" className="py-2 px-6 text-black text-2xl">
-                            Home
-                        </NavLink>
-                       {/*  <NavLink to="/watch" className="py-2 px-6 text-xl">
-                            Watch
-                        </NavLink> */}
-                        <NavLink to="product" className="py-2 px-6 text-2xl">
-                            Product
-                        </NavLink>
-                        <NavLink to="/contact" className="py-2 px-6 text-2xl">
-                            Contact
-                        </NavLink>
-                       {/*  <NavLink to="/career" className="py-2 px-6 text-xl">
-                            Career
-                        </NavLink> */}
-                    </div>
-                </div>
-            </header>
+
+ 
+
+
+  const navLinkStyle = ({ isActive }) => ({
+    fontWeight: isActive ? "bold" : "normal",
+    color: isActive ? "#A90A0A" : "",
+  });
+
+  const handleViewCart =()=>{
+    setShowCart(true)
+    setCartUpdated(true); 
+    setShowBlur(true); 
+
+  }
+  return (
+    <>
+    <div
+      className="app__navbar"
+      style={{ borderBottom: `1px solid ${colorBorder}` }}
+    >
+      <div className="app__navbar-burger-btm">
+        <FaBars
+          color="#fff"
+          fontSize={27}
+          onClick={() => setToggleMenu(true)}
+        />
+      </div>
+
+      <div className="app__navbar-logo">
+        <img src={images.logo} alt="logo" />
+      </div>
+      <ul className="app__navbar-list">
+        <li style={{ color: `${colorLink}` }}>
+          <NavLink className="link" style={navLinkStyle} to="/">
+            Accueil
+          </NavLink>
+        </li>
+        <li style={{ color: `${colorLink}` }}>
+          <NavLink className="link" style={navLinkStyle} to="/about">
+            A propos
+          </NavLink>
+        </li>
+        <li style={{ color: `${colorLink}` }}>
+          <NavLink className="link" style={navLinkStyle} to="/products">
+            Produits
+          </NavLink>
+        </li>
+        <li style={{ color: `${colorLink}` }}>
+          <a href="#contact" className="link">
+            Contact
+          </a>
+        </li>
+      </ul>
+
+      <div className="app__navbar-icons">
+        {userToken && (
+          <StyledIconButton
+            aria-label="cart"
+            onClick={handleViewCart}
+          >
+            <StyledBadge badgeContent={badgeNumber} color="secondary">
+              <ShoppingCartIcon style={isWidthLessThan1000 ?{ color: 'white' }: { color: cartColor }} />
+            </StyledBadge>
+          </StyledIconButton>
+        )}
+
+        <a
+          className="social-icon"
+          href="https://www.facebook.com/Fournisseurdeproximite"
+        >
+          <FaFacebookF
+            color={isWidthLessThan1000 ? `${colorIcon}` : `${colorLink}`}
+            fontSize={20}
+          />
+        </a>
+        <a
+          className="social-icon"
+          target="blank"
+          href="https://wa.me/24177066605"
+        >
+          <FaWhatsapp
+            color={isWidthLessThan1000 ? `${colorIcon}` : `${colorLink}`}
+            fontSize={20}
+          />
+        </a>
+        {!userToken && (
+          <>
+            <Link className="btn-connection" to="/connection/login">
+              Login
+            </Link>
+            <Link
+              className="btn-connection btn-register"
+              to="/connection/signup"
+            >
+              Sign Up
+            </Link>
+          </>
+        )}
+        {userToken && (
+          <button
+            className="btn-connection btn-register"
+            onClick={handleLogout}
+          >
+            Logout
+          </button>
+        )}
+      </div>
+
+      {/* Navbar on small screen */}
+      {toggleMenu && (
+        <div className="app__navbar-smallScreen-overlay slide-right">
+          <div className="overlay-header">
+            <FaTimes
+              color="#fff"
+              fontSize={27}
+              onClick={() => setToggleMenu(false)}
+            />
+            {userInfo && (
+              <div className="display-user">
+                <FaUserAlt color="black" />
+                <p>{userInfo.username}</p>
+              </div>
+            )}
+          </div>
+          <ul className="app__navbar-list-overlay">
+            <li>
+              <NavLink className="link" style={navLinkStyle} to="/">
+                Accueil
+              </NavLink>
+            </li>
+            <li>
+              <NavLink className="link" style={navLinkStyle} to="/about">
+                A propos
+              </NavLink>
+            </li>
+            <li>
+              <NavLink className="link" style={navLinkStyle} to="/products">
+                Produits
+              </NavLink>
+            </li>
+            <li>
+              <NavLink className="link" to="#contact">
+                Contact
+              </NavLink>
+            </li>
+          </ul>
+          {!userToken && (
+            <>
+              <Link className="btn-connection" to="/connection/login">
+                Login
+              </Link>
+              <Link
+                className="btn-connection btn-register"
+                to="/connection/signup"
+              >
+                Sign Up
+              </Link>
+            </>
+          )}
+          {userToken && (
+            <button
+              className="btn-connection btn-register"
+              onClick={handleLogout}
+            >
+              Logout
+            </button>
+          )}
         </div>
-    );
+      )}
+
+      {showCart &&       <Cart showCart={showCart} setShowCart={setShowCart} cartUpdated={cartUpdated} setCartUpdated={setCartUpdated} />
+
+        
+        }
+        
+    </div>
+
+    {/* <BlurEffect showBlur={showCart} />  */}
+    </>
+  );
 };
 
 export default Navbar;
